@@ -2,7 +2,7 @@ from time import time
 from loguru import logger
 from fastapi import FastAPI, Request
 
-from controllers import users_v1
+from controllers import user_v1
 
 
 tags_metadata = [
@@ -33,7 +33,7 @@ app = FastAPI(
     version="0.0.1",
     openapi_tags=tags_metadata,
 )
-app.include_router(users_v1.router, prefix="/v1", tags=["users"])
+app.include_router(user_v1.router, prefix="/v1", tags=["users"])
 
 
 @app.middleware("http")
