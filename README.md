@@ -49,3 +49,10 @@ $ uvicorn main:app --workers 5
 # start server with specific port
 $ uvicorn main:app --port 8000
 ```
+
+## View
+
+There are two interactive API docs supported by FastAPI out of the box
+
+1. Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
+2. ReDoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)

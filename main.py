@@ -11,7 +11,28 @@ tags_metadata = [
 ]
 exclude_logging_route = ["/docs", "/openapi.json", "/healthCheck"]
 
-app = FastAPI(openapi_tags=tags_metadata)
+app_description = """
+Just showing markdown is supported in description. 🚀
+
+### Header
+
+This is **bold**
+
+This is *Italic*
+
+This is list:
+- one
+- two
+- three
+"""
+
+app = FastAPI(
+    title="FastAPI-Template",
+    summary="Attempt to create decent FastAPI template for personal reference.",
+    description=app_description,
+    version="0.0.1",
+    openapi_tags=tags_metadata,
+)
 app.include_router(users_v1.router, prefix="/v1", tags=["users"])
 
 
