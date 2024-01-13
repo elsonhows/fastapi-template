@@ -56,3 +56,10 @@ There are two interactive API docs supported by FastAPI out of the box
 
 1. Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
 2. ReDoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+
+## Reference
+
+Potential useful reference links:
+
+- [awesome-fastapi](https://github.com/mjhea0/awesome-fastapi)
+- [fastapi-restful](https://fastapi-restful.netlify.app/) - alternative to fastapi-utils
