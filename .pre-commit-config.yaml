@@ -12,11 +12,11 @@ repos:
       - id: ruff-check
         name: "fix files based on ruff lint"
         # only attempt to fix organize import and remove unused import
-        entry: bash -c 'ruff check --select I,F401 --fix .'
+        entry: bash -c 'ruff check --select I,F401 --fix . && git add -u'
         language: system
   - repo: local
     hooks:
       - id: ruff-format
         name: "format files with ruff"
-        entry: bash -c 'ruff format .'
+        entry: bash -c 'ruff format . && git add -u'
         language: system
