@@ -1,9 +1,10 @@
 from time import time
-from loguru import logger
+
 from fastapi import FastAPI, Request
+from fastapi.security import HTTPBearer
+from loguru import logger
 
 from controllers import user_v1
-
 
 tags_metadata = [
     {"name": "users", "description": "Users endpoints"},
@@ -34,6 +35,9 @@ app = FastAPI(
     openapi_tags=tags_metadata,
 )
 app.include_router(user_v1.router, prefix="/v1", tags=["users"])
+
+
+security = HTTPBearer()
 
 
 @app.middleware("http")

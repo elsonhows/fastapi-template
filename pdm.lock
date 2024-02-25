@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:2b62d072017e6e5a8a4303998b7134ed06f5e63c70c420514d89b657cdad1185"
+content_hash = "sha256:70e89d35447c84f0f2ece39aa33a106cad34502e13f198d589573d9a7c67f4b9"
 
 [[package]]
 name = "annotated-types"
@@ -179,22 +179,6 @@ files = [
 ]
 
 [[package]]
-name = "fastapi-restful"
-version = "0.5.0"
-requires_python = ">=3.7,<4.0"
-summary = "Quicker FastApi developing tools"
-groups = ["default"]
-dependencies = [
-    "fastapi<1.0,>=0.89",
-    "psutil<6,>=5",
-    "pydantic<3.0,>1.0",
-]
-files = [
-    {file = "fastapi_restful-0.5.0-py3-none-any.whl", hash = "sha256:f768bfe383fe9ef4affe357572122c8348d6a108eef5e373101c8cde18c0d27d"},
-    {file = "fastapi_restful-0.5.0.tar.gz", hash = "sha256:f4215d262aa3fb3d6024e1b45061151f3e38afa41877c6253f434c65690c1ed7"},
-]
-
-[[package]]
 name = "filelock"
 version = "3.13.1"
 requires_python = ">=3.8"
@@ -364,22 +348,6 @@ groups = ["dev"]
 files = [
     {file = "platformdirs-4.2.0-py3-none-any.whl", hash = "sha256:0614df2a2f37e1a662acbd8e2b25b92ccf8632929bc6d43467e17fe89c75e068"},
     {file = "platformdirs-4.2.0.tar.gz", hash = "sha256:ef0cc731df711022c174543cb70a9b5bd22e5a9337c8624ef2c2ceb8ddad8768"},
-]
-
-[[package]]
-name = "psutil"
-version = "5.9.8"
-requires_python = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
-summary = "Cross-platform lib for process and system monitoring in Python."
-groups = ["default"]
-files = [
-    {file = "psutil-5.9.8-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:aee678c8720623dc456fa20659af736241f575d79429a0e5e9cf88ae0605cc81"},
-    {file = "psutil-5.9.8-cp36-abi3-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:8cb6403ce6d8e047495a701dc7c5bd788add903f8986d523e3e20b98b733e421"},
-    {file = "psutil-5.9.8-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d06016f7f8625a1825ba3732081d77c94589dca78b7a3fc072194851e88461a4"},
-    {file = "psutil-5.9.8-cp37-abi3-win32.whl", hash = "sha256:bc56c2a1b0d15aa3eaa5a60c9f3f8e3e565303b465dbf57a1b730e7a2b9844e0"},
-    {file = "psutil-5.9.8-cp37-abi3-win_amd64.whl", hash = "sha256:8db4c1b57507eef143a15a6884ca10f7c73876cdf5d51e713151c1236a0e68cf"},
-    {file = "psutil-5.9.8-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:d16bbddf0693323b8c6123dd804100241da461e41d6e332fb0ba6058f630f8c8"},
-    {file = "psutil-5.9.8.tar.gz", hash = "sha256:6be126e3225486dff286a8fb9a06246a5253f4c7c53b475ea5f5ac934e64194c"},
 ]
 
 [[package]]
