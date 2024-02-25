@@ -1,0 +1,27 @@
+[project]
+name = "fastapi-template"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = []
+dependencies = [
+    "fastapi>=0.110.0",
+    "fastapi-restful>=0.5.0",
+    "loguru>=0.7.2",
+    "uvicorn>=0.27.1",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pdm>=2.12.3",
+]
+
+[tool.pdm.scripts]
+start = "uvicorn main:app --reload"
+export = "pdm export -o requirements.txt --without-hashes"
+
+
+[tool.pdm]
+distribution = false

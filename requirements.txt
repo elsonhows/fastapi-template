@@ -1,4 +1,0 @@
-fastapi==0.109.0
-fasiapi-restful==0.5.0
-logoru == 0.7.2
-uvicorn==0.25.0
