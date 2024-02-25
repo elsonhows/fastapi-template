@@ -20,6 +20,10 @@ dev = [
 
 [tool.pdm.scripts]
 start = "uvicorn main:app --reload"
+setup_pdm = { composite = [
+    "pdm use",
+    "pdm install"
+]}
 export = "pdm export -o requirements.txt --without-hashes"
 
 
