@@ -58,7 +58,7 @@ api_key_header = APIKeyHeader(name="Authorization")
 
 
 @app.get("/http_bearer", tags=["security"])
-def get_http_bearer(authorization: str = Depends(security)):
+def get_http_bearer(temp: str, authorization: str = Depends(security)):
     return authorization.credentials
 
 

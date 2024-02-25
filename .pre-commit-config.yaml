@@ -1,0 +1,22 @@
+repos:
+  - repo: local
+    hooks:
+      - id: pdm-export-lock
+        name: "export locked packages to requirements.txt"
+        entry: bash -c 'pdm export -o requirements.txt --without-hashes && git add requirements.txt'
+        language: system
+        pass_filenames: false
+        files: ^pdm.lock$
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: "fix files based on ruff lint"
+        # only attempt to fix organize import and remove unused import
+        entry: bash -c 'ruff check --select I,F401 --fix .'
+        language: system
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: "format files with ruff"
+        entry: bash -c 'ruff format .'
+        language: system

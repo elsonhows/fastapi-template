@@ -15,6 +15,8 @@ license = {text = "MIT"}
 [tool.pdm.dev-dependencies]
 dev = [
     "pdm>=2.12.3",
+    "ruff>=0.2.2",
+    "pre-commit>=3.6.2",
 ]
 
 [tool.pdm.scripts]
@@ -23,8 +25,12 @@ setup_pdm = { composite = [
     "pdm use",
     "pdm install"
 ]}
+setup_pre-commit = "pre-commit install"
+setup = { composite = [
+    "pdm run setup_pdm",
+    "pdm run setup_pre-commit"
+]}
 export = "pdm export -o requirements.txt --without-hashes"
-
 
 [tool.pdm]
 distribution = false
