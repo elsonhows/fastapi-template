@@ -1,7 +1,7 @@
 from time import time
 
-from fastapi import FastAPI, Request
-from fastapi.security import HTTPBearer
+from fastapi import Depends, FastAPI, Request, Security
+from fastapi.security import APIKeyHeader, HTTPBearer
 from loguru import logger
 
 from controllers import user_v1
@@ -9,6 +9,7 @@ from controllers import user_v1
 tags_metadata = [
     {"name": "users", "description": "Users endpoints"},
     {"name": "system", "description": "System endpoints"},
+    {"name": "security", "description": "Security endpoints"},
 ]
 exclude_logging_route = ["/docs", "/openapi.json", "/healthCheck"]
 
@@ -37,9 +38,6 @@ app = FastAPI(
 app.include_router(user_v1.router, prefix="/v1", tags=["users"])
 
 
-security = HTTPBearer()
-
-
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     # docs for "request" refer to https://www.starlette.io/requests/
@@ -52,6 +50,21 @@ async def add_process_time_header(request: Request, call_next):
         )
     # response.headers["X-Process-Time"] = str(process_time)
     return response
+
+
+# refer https://stackoverflow.com/questions/74085996/how-to-send-authorization-header-through-swagger-ui-using-fastapi/74088523#74088523
+security = HTTPBearer()
+api_key_header = APIKeyHeader(name="Authorization")
+
+
+@app.get("/http_bearer", tags=["security"])
+def get_http_bearer(authorization: str = Depends(security)):
+    return authorization.credentials
+
+
+@app.get("/api_key_header_auth", tags=["security"])
+def get_api_key_header_auth(api_key: str = Security(api_key_header)):
+    return api_key
 
 
 @app.get(
