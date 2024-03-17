@@ -1,10 +1,9 @@
 from time import time
 
-from fastapi import Depends, FastAPI, Request, Security
-from fastapi.security import APIKeyHeader, HTTPBearer
+from fastapi import FastAPI, Request
 from loguru import logger
 
-from controllers import user_v1
+from controllers import security_v1, user_v1
 
 tags_metadata = [
     {"name": "users", "description": "Users endpoints"},
@@ -36,6 +35,7 @@ app = FastAPI(
     openapi_tags=tags_metadata,
 )
 app.include_router(user_v1.router, prefix="/v1", tags=["users"])
+app.include_router(security_v1.router, prefix="/v1/security", tags=["security"])
 
 
 @app.middleware("http")
@@ -52,19 +52,22 @@ async def add_process_time_header(request: Request, call_next):
     return response
 
 
-# refer https://stackoverflow.com/questions/74085996/how-to-send-authorization-header-through-swagger-ui-using-fastapi/74088523#74088523
-security = HTTPBearer()
-api_key_header = APIKeyHeader(name="Authorization")
+@app.middleware("http")
+async def process_jwt_token(request: Request, call_next):
+    from utils.contextvars import request as ctx_request
 
+    auth_header = request.headers.get("Authorization")
+    if auth_header:
+        jwt_token = auth_header.replace("Bearer ", "")
+        request.state.jwt_token = jwt_token
+    # put reuqest into context var so that value can be accessible globally within session
+    request_token = ctx_request.set(request)
 
-@app.get("/http_bearer", tags=["security"])
-def get_http_bearer(temp: str, authorization: str = Depends(security)):
-    return authorization.credentials
+    response = await call_next(request)
 
+    ctx_request.reset(request_token)
 
-@app.get("/api_key_header_auth", tags=["security"])
-def get_api_key_header_auth(api_key: str = Security(api_key_header)):
-    return api_key
+    return response
 
 
 @app.get(
